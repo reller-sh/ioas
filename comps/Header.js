@@ -16,7 +16,7 @@ export const Header = ({children}) => {
     const cookie = useCookie();
     useEffect(() => setAuth(typeof cookie.get('authorize_id') === 'string'), [cookie])
     return (<>
-        <nav className="nav nav-pills nav-justified m-3">
+        <nav className="nav nav-pills nav-justified p-3">
             {tabs.map((item, key) => (
                 <A
                     key={String(key)}
