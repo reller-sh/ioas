@@ -10,9 +10,11 @@ export default async function handler(req, res) {
             DECLARE
                 avatar uuid := null;
             BEGIN
-                insert into files(name, path)
-                values (concat(uuid_generate_v4(), '-avatar'), '${req.body.avatar}')
-                returning id into avatar;
+                IF NOT '${req.body.avatar}' = 'undefined' then
+                    insert into files(name, path)
+                    values (concat(uuid_generate_v4(), '-avatar'), '${req.body.avatar}')
+                    returning id into avatar;
+                end if;
         
                 insert
                 into users(email, username, password, firstname, lastname, patronymic, avatar)
